@@ -2,7 +2,7 @@ import os
 import sys
 from setuptools import setup
 
-setup(name='github-cli',
+setup(name='github_cli',
 	version='0.1',
 	description='Command Line Interface for GitHub',
 	long_description=open('README.md').read(),
@@ -13,7 +13,7 @@ setup(name='github-cli',
 	author_email='joshbenham@gmail.com',
 	url='https://github.com/joshbenham/github-cli',
 	keywords='web python github git cli',
-	packages=['github-cli',],
+	packages=['github_cli',],
 	install_requires=open('requirements.txt').readline(),
 )
 
