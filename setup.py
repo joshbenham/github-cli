@@ -14,6 +14,7 @@ setup(name='github_cli',
 	url='https://github.com/joshbenham/github-cli',
 	keywords='web python github git cli',
 	packages=['github_cli',],
+	scripts=['github'],
 	install_requires=open('requirements.txt').read(),
 )
 
