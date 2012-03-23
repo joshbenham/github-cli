@@ -17,7 +17,7 @@ class Config:
         if "GHGLI_CONFIG" in os.environ:
             return os.environ["GHCLI_CONFIG"]
         else:
-            return "%(home)s/.ghcli" % { "home": os.environ["HOME"] }
+            return os.path.join(os.environ["HOME"], ".ghcli")
 
     def __getitem__(self, k):
         # Lazy load config- may not exist yet
