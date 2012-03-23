@@ -79,10 +79,12 @@ class Issues(GithubFeed):
         except KeyError:
             url = self.url
 
+        params["access_token"] = self.config["access_token"]
+
         data = {"url": url,
                 "params": ul.urlencode(params)
                }
 
-        resp = requests.get("%(url)s?%(params)s" % data, auth=(self.config["username"], self.config["password"]))
+        resp = requests.get("%(url)s?%(params)s" % data)
         return json.loads(resp.text)
 
