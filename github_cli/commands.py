@@ -41,7 +41,9 @@ class Issues(Command):
 		arg('--user', default=False, nargs=1, help='List the issues for a particular user', action='store'),
         arg('--repo', default=False, nargs=1, help='List the issues for a particular repo', action='store'),
         arg('--filter', default='assigned', nargs=1, help='Filter issues by assigned, created, mentioned or subscribed. Default: assigned', action='store'),
-        arg('--state', default='open', nargs=1, help='Filter state by created, updated or comments. Default: created', action='store'),
+        arg('--labels', nargs=1, help='Filter by comma seperated labels. Example: bug,ui,@high', action='store'),
+        arg('--state', default='open', nargs=1, help='Filter state by open or closed. Default: open', action='store'),
+        arg('--sort', default='created', nargs=1, help='Filter sort by created, updated or comments. Default: created', action='store'),
         arg('--direction', default='desc', nargs=1, help='Filter direction by asc or desc. Default: desc', action='store'),
     ]
 
