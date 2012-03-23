@@ -1,10 +1,12 @@
 import sys
 from argparse import ArgumentParser
+import actions
 
 class Command(object):
 	args = []
 	def execute(self, args):
-		raise NotImplementedError()
+        cls = actions.__getattr__(self.__name__)(args)
+        cls.execute()
 
 def arg(*args, **kw):
 	return (args, kw)
@@ -32,14 +34,14 @@ class Issues(Command):
 		arg('-r', default=False, nargs="1", help="List issues form a repo")
 	]
 
-	def execute(self, args):
-		print('issues')
-
 class Organisations(Command):
 	"""list organisations"""
 	args = [
 		arg('-o')
 	]
 
-	def execute(self, args):
-		print('organisations')
+class Config(Command):
+    """configure github authentication"""
+    args = [
+            arg(nargs="1", help="Configure access to github")
+    ]
