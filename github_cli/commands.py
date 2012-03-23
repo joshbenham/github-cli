@@ -38,8 +38,8 @@ def register_commands(arg_parser):
 class Issues(Command):
     """list issues"""
     args = [
-		#arg('--user', default=False, nargs=1, help='List the issues for a particular user', action='store'),
-        #arg('--repo', default=False, nargs=1, help='List the issues for a particular repo', action='store'),
+		arg('--user', default=False, nargs=1, help='List the issues for a particular user', action='store'),
+        arg('--repo', default=False, nargs=1, help='List the issues for a particular repo', action='store'),
         arg('--filter', default='assigned', nargs=1, help='Filter issues by assigned, created, mentioned or subscribed. Default: assigned', action='store'),
         arg('--state', default='open', nargs=1, help='Filter state by created, updated or comments. Default: created', action='store'),
         arg('--direction', default='desc', nargs=1, help='Filter direction by asc or desc. Default: desc', action='store'),

@@ -1,5 +1,9 @@
 # import oauth2 as oauth
-import urllib
+try:
+    import urllib.parse as ul
+except ImportError:
+    import urllib as ul
+
 import requests
 import json
 import sys
@@ -49,11 +53,8 @@ class Issues(GithubFeed):
         except KeyError:
             url = self.url
 
-        del params['user']
-        del params['repo']
-
         data = {"url": url,
-                "params": urllib.urlencode(params)
+                "params": ul.urlencode(params)
                }
         resp = requests.get("%(url)s?%(params)s" % data, auth=(self.config["username"], self.config["password"]))
         return json.loads(resp.text)

@@ -14,8 +14,12 @@ class Issues:
 
     def execute(self):
         params = {}
-        #if self.args.user and self.args.repo:
-        #    url = 'https://api.github.com/repos/%s/%s/issues' % ( self.args.user[0], self.args.repo[0] )
+
+        if self.args.user:
+            params['user'] = self.args.user[0]
+        
+        if self.args.repo:
+            params['repo'] = self.args.repo[0]
 
         if self.args.filter[0] in self.allowed_filters:
             params['filter'] = self.args.filter[0]
@@ -26,13 +30,9 @@ class Issues:
         if self.args.direction[0] in self.allowed_directions:
             params['direction'] = self.args.direction[0]
 
-        params['user'] = "99designs"
-        params['repo'] = "contests"
-
         gh = Github("https://api.github.com")
         ret = gh.issues(params)
-        print(ret)
 
         for issue in ret:
-            print(issue)
+            print('[ %(url)s ] %(title)s' % { 'url': issue['html_url'], 'title': issue['title']})
 
