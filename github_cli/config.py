@@ -8,7 +8,6 @@ REQUIRED_KEYS = ("username", "oauth_token", "oauth_secret")
 
 class Config:
 
-
     def __init__(self):
         self._config_ready = False
         self._config = None
