@@ -64,5 +64,5 @@ class Config:
     def validate(c):
         for i in REQUIRED_KEYS:
             if i not in c:
-                raise InvalidGHConfigError, "Missing key %(name)s" % { "name": i }
+                raise InvalidGHConfigError("Missing key %(name)s" % { "name": i })
         return True
