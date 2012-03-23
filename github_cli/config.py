@@ -33,11 +33,11 @@ class Config:
 
     def read(self):
         """Wraps config read for the usecase where you want to update keys without reading"""
-        self.read_config()
+        self.config_read()
 
     def write(self):
         """Writes config out to disk"""
-        self.write_config()
+        self.config_write()
 
     def new(self):
         """Creates a new config context for when the user isn't previously configured"""
