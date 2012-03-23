@@ -1,3 +1,4 @@
+OAUTH_SHIM_URL = "http://oauth.psych0.tk/callback/%s"
 # import oauth2 as oauth
 try:
     import urllib.parse as ul
@@ -7,7 +8,7 @@ except ImportError:
 import requests
 import json
 import sys
-from github_cli.config import Config
+import github_cli.config
 
 class Github:
     """Represents an authenticated session to github"""
@@ -33,13 +34,39 @@ class GithubFeed:
     Baseclass only"""
     def __init__(self, base):
         self.base = base
-        self.config = Config()
+        self.config = github_cli.config.Config()
         pass
 
     def __call__(self, *args, **kwargs):
         """Used to make feed accessors"""
         raise NotImplementedError
 
+class Oauth(GithubFeed):
+    def __init__(self, *args):
+        GithubFeed.__init__(self, *args)
+        self.url = "%(base)s/login/oauth" % { "base": self.base.replace("api.", "") }
+
+    def auth_url(self, id=""):
+        params = { "redirect_uri": OAUTH_SHIM_URL % id,
+                   "client_id":    github_cli.config.CLIENT_KEY}
+        data = {"url": self.url,
+                "params": ul.urlencode(params)
+               }
+        return "%(url)s/authorize?%(params)s" % data
+
+    @staticmethod
+    def parse_params(params):
+        out = {}
+        for k, v in map(lambda n: n.split("="), params.split("&")):
+            out[k] = v
+        return out
+
+    def __call__(self, path, params):
+        data = {"url": self.url,
+                "path": path
+               }
+        resp = requests.post("%(url)s/%(path)s" % data, data=params)
+        return self.parse_params(resp.text)
 
 class Issues(GithubFeed):
     def __init__(self, *args):
