@@ -4,7 +4,7 @@ import yaml
 
 class InvalidGHConfigError(Exception): pass
 class NonexistantGHConfigError(Exception): pass
-REQUIRED_KEYS = ("username", "oauth_token", "oauth_secret")
+REQUIRED_KEYS = ("username", "access_token")
 DEFAULT_OPTIONS = {}
 CLIENT_KEY = "1112a0120246109dc7b3"
 CLIENT_SECRET = "66478378df4189a22c0fa2d31de6004826fa0d41"
