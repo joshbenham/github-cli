@@ -55,7 +55,6 @@ class Issues(GithubFeed):
         data = {"url": url,
                 "params": urllib.urlencode(params)
                }
-        print "%(url)s?%(params)s" % data
         resp = requests.get("%(url)s?%(params)s" % data, auth=(self.config["username"], self.config["password"]))
         return json.loads(resp.text)
 
