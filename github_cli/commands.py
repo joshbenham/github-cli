@@ -20,15 +20,14 @@ def commands():
 def register_commands(arg_parser):
 	cmd_parsers = arg_parser.add_subparsers()
 	for cmd in commands():
-		help = (cmd.__doc__ or 'no help').strip().splitlines()[0]
-		cmd_parser = cmd_parsers.add_parser(cmd.__name__.lower(), help=help)
+		_help = (cmd.__doc__ or 'no help').strip().splitlines()[0]
+		cmd_parser = cmd_parsers.add_parser(cmd.__name__.lower(), help=_help)
 		for (args, kw) in cmd.args:
 			cmd_parser.add_argument(*args, **kw)
 		cmd_parser.set_defaults(command_class=cmd)
 
 class Issues(Command):
-	"""list issues
-	"""
+	"""list issues"""
 	args = [
 		arg('-r', default=False, nargs="1", help="List issues form a repo")
 	]
@@ -37,8 +36,7 @@ class Issues(Command):
 		print('issues')
 
 class Organisations(Command):
-	"""list organisations
-	"""
+	"""list organisations"""
 	args = [
 		arg('-o')
 	]
