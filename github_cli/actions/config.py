@@ -6,7 +6,9 @@ class Config:
 
     def execute(self):
         # TODO Blindly assume that we don't mind nuking config
-        print("Launched config task")
+        with github_cli.config.Config().new() as conf:
+            conf["username"] = self.args.username
+
 
 
 

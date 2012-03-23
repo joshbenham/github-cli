@@ -42,6 +42,7 @@ class Config:
     def new(self):
         """Creates a new config context for when the user isn't previously configured"""
         self._config = {}
+        return self
 
     def config_read(self):
         """Private config reader"""
@@ -66,3 +67,10 @@ class Config:
             if i not in c:
                 raise InvalidGHConfigError("Missing key %(name)s" % { "name": i })
         return True
+    def __enter__(self):
+        """Compliance with the with protocol"""
+        return self
+    def __exit__(self, typ, valu, tracebac):
+        """When used as a with statement, config is written out at exit"""
+        if typ is None:
+            self.write()
