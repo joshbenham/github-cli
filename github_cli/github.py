@@ -74,7 +74,6 @@ class Issues(GithubFeed):
         self.url = "%(base)s/issues" % { "base": self.base }
 
     def __call__(self, params):
-
         try:
             url = "%(base)s/repos/%(user)s/%(repo)s/issues" % { "base": self.base, "user": params['user'], "repo": params["repo"] }
         except KeyError:
@@ -83,8 +82,6 @@ class Issues(GithubFeed):
         data = {"url": url,
                 "params": ul.urlencode(params)
                }
-
-        print('%(url)s?%(params)s' % data)
 
         resp = requests.get("%(url)s?%(params)s" % data, auth=(self.config["username"], self.config["password"]))
         return json.loads(resp.text)
