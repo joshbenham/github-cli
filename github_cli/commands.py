@@ -50,5 +50,5 @@ class Issues(Command):
 class Config(Command):
     """configure github authentication"""
     args = [
-        arg('username', nargs='?', default=None)
+        arg('username', nargs=1, default=None)
     ]
