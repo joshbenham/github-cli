@@ -13,7 +13,7 @@ class Config:
         self._config = None
 
     def config_path(self):
-        if "GHGLI_CONFIG" in os.environ:
+        if "GHCLI_CONFIG" in os.environ:
             return os.environ["GHCLI_CONFIG"]
         else:
             return os.path.join(os.environ["HOME"], ".ghcli")
