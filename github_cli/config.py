@@ -4,10 +4,10 @@ import yaml
 
 class InvalidGHConfigError(Exception): pass
 class NonexistantGHConfigError(Exception): pass
+REQUIRED_KEYS = ("username", "oauth_token", "oauth_secret")
 
 class Config:
 
-    REQUIRED_KEYS = ("username", "oauth_token", "oauth_secret")
 
     def __init__(self):
         self._config_ready = False
@@ -62,8 +62,8 @@ class Config:
             f.write(yaml.dump(self._config))
 
     @staticmethod
-    def validate(self):
+    def validate(c):
         for i in REQUIRED_KEYS:
-            if i not in _config:
+            if i not in c:
                 raise InvalidGHConfigError, "Missing key %(name)s" % { "name": i }
         return True
