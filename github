@@ -1,0 +1,11 @@
+#!/home/developer/projects/python/github/env/bin/python
+
+import sys
+from github_cli.commands import register_commands
+
+import argparse
+arg_parser = argparse.ArgumentParser()
+register_commands(arg_parser)
+args = arg_parser.parse_args(sys.argv[1:])
+command = args.command_class()
+command.execute(args)
