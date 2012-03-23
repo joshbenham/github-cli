@@ -41,7 +41,7 @@ class Config:
 
     def new(self):
         """Creates a new config context for when the user isn't previously configured"""
-        self._config = {}
+        self._config = DEFAULT_OPTIONS
         return self
 
     def config_read(self):
