@@ -1,13 +1,13 @@
 import sys
 from argparse import ArgumentParser
-import actions
 
+from github_cli import actions
 actions.actions = {} #{{{
 # XXX Code smell
-import actions.config
-actions.actions['Config'] = actions.config.Config
-# import actions.config
-# __actions['Issues'] = actions.issues.Issues
+from github_cli.actions import config
+actions.actions['Config'] = config.Config
+from github_cli.actions import issues
+actions.actions['Issues'] = issues.Issues
 #}}}
 
 class Command(object):
@@ -38,13 +38,11 @@ def register_commands(arg_parser):
 class Issues(Command):
     """list issues"""
     args = [
-        arg('repo', default=False, nargs=1, help="List issues form a repo", action="store")
-    ]
-
-class Organisations(Command):
-    """list organisations"""
-    args = [
-        arg('-o')
+		#arg('--user', default=False, nargs=1, help='List the issues for a particular user', action='store'),
+        #arg('--repo', default=False, nargs=1, help='List the issues for a particular repo', action='store'),
+        arg('--filter', default='assigned', nargs=1, help='Filter issues by assigned, created, mentioned or subscribed. Default: assigned', action='store'),
+        arg('--state', default='open', nargs=1, help='Filter state by created, updated or comments. Default: created', action='store'),
+        arg('--direction', default='desc', nargs=1, help='Filter direction by asc or desc. Default: desc', action='store'),
     ]
 
 class Config(Command):
