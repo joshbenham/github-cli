@@ -1,4 +1,3 @@
-import oauth2 as oauth
 import socket
 import webbrowser
 
@@ -37,5 +36,5 @@ class Config:
                 "code": code
                 }
 
-            conf["access_token"] = gh.oauth("access_token", req_data)[u'access_token']
+            conf["access_token"] = gh.oauth("access_token", req_data)["access_token"]
             conf["username"] = self.args.username
