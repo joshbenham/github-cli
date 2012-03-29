@@ -1,0 +1,8 @@
+python:
+  - "3.0"
+  - "3.1"
+  - "3.2"
+install:
+  - pip install . --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
+script: python -m unittest discover -s test
