@@ -8,3 +8,4 @@ script: make test
 notifications:
   email:
     - healey.rich@gmail.com
+    - joshbenham@gmail.com
