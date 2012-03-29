@@ -1,7 +1,8 @@
-bin
-===
+github-cli
+==========
 
 [Josh Benham](http://joshbenham.net)'s GitHub command line interface
+[![Build Status](https://secure.travis-ci.org/joshbenham/github-cli.png?branch=master)](http://travis-ci.org/joshbenham/github-cli)
 
 Overview
 --------
