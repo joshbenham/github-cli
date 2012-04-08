@@ -18,7 +18,7 @@ class Issues:
 
         if self.args.user:
             params['user'] = self.args.user[0]
-        
+
         if self.args.repo:
             params['repo'] = self.args.repo[0]
 
