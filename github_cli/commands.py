@@ -8,6 +8,8 @@ from github_cli.actions import config
 actions.actions['Config'] = config.Config
 from github_cli.actions import issues
 actions.actions['Issues'] = issues.Issues
+from github_cli.actions import pull_requests
+actions.actions['Pull_Requests'] = pull_requests.PullRequests
 #}}}
 
 class Command(object):
@@ -52,3 +54,13 @@ class Config(Command):
     args = [
         arg('username', nargs=1, default=None)
     ]
+
+class Pull_Requests(Command):
+    """Manage pull requests"""
+    args = [
+		arg('--repo', default=False, nargs=1, help='repo to open pull request against', action='store'),
+		arg('--base', default="master", nargs=1, help='base ref to pull in (defaults to master)', action='store'),
+		arg('--head', default=False, nargs=1, help='ref to request a merge of (defaults to inferring the current branch)', action='store'),
+		arg('-t', '--title', default=False, nargs=1, help='Title for pull request (defaults to inference from EDITOR session)', action='store'),
+		arg('-m', '--message', default=False, nargs=1, help='Message for pull request (defaults to inference from EDITOR session)', action='store'),
+            ]
