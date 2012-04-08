@@ -2,6 +2,8 @@ python:
   - "2.6"
   - "2.7"
   - "3.2"
+env:
+ - PYTHON_ENV=travis
 install:
   - python setup.py install
 script: make test

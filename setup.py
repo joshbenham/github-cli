@@ -1,4 +1,14 @@
+import os
+
 from setuptools import setup
+
+def get_install_requires():
+    try:
+        if os.environ["PYTHON_ENV"] == "travis":
+            return []
+    except KeyError:
+        pass
+    return open('requirements.txt').read()
 
 setup(name='github_cli',
 	version='0.1',
@@ -13,6 +23,5 @@ setup(name='github_cli',
 	keywords='web python github git cli',
 	packages=['github_cli',],
 	scripts=['github'],
-	install_requires=open('requirements.txt').read(),
+	install_requires=get_install_requires(),
 )
-
