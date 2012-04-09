@@ -88,3 +88,13 @@ class Issues(GithubFeed):
         resp = requests.get("%(url)s?%(params)s" % data)
         return json.loads(resp.text)
 
+class NewPullRequest(GithubFeed):
+    def __init__(self, *args):
+        GithubFeed.__init__(self, *args)
+        self.url = "%(base)s/pulls" % { "base": self.base }
+
+    def __call__(self, params):
+        url = "%(orig)s/%(repo)s" % { "orig": self.url, "repo": params.pop("repo") }
+
+        rep = requests.post(url, params)
+        return json.loads(resp.text)
