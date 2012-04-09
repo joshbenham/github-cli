@@ -24,7 +24,7 @@ class PullRequests:
         if self.args.title:
             return self.args.title[0]
         elif we_are_tty():
-            self.messageparser.get_title()
+            return self.messageparser.get_title()
         else:
             raise NoTitleError
 
@@ -32,19 +32,19 @@ class PullRequests:
         if self.args.message:
             return self.args.message[0]
         elif we_are_tty():
-            self.messageparser.get_title()
+            return self.messageparser.get_message()
         else:
-            raise NoTitleError
+            raise NoMessageError
 
     def get_head(self):
-        if self.args.base[0]:
-            return self.args.base[0]
+        if self.args.head:
+            return self.args.head
         # Try to work out what branch we're on somehow
 
     def execute(self):
         params = {}
 
-        params['pull[base]'] = self.args.base[0]
+        params['pull[base]'] = self.args.base
 
         params['pull[head]'] = self.get_head()
 
