@@ -13,10 +13,10 @@ Instructions
 ------------
 ```sh
 # grab the repo
-git clone git://github.com/joshbenham/github-cli
+$ git clone git://github.com/joshbenham/github-cli
 
 # symlink it to your bin directory
-ln -s github-cli/github ~/bin/github
+$ ln -s github-cli/github ~/bin/github
 ```
 
 Also make sure that your ~/bin directory is in your environment path.
@@ -26,5 +26,5 @@ Usage
 
 ```sh
 # check to see what issues are in your github
-github issues
+$ github issues
 ```
